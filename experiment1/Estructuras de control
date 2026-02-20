@@ -1,0 +1,137 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    /*
+    int x;
+    int suma = 0;
+    printf("Ingresa numero inicial\n");
+    scanf("%d", &x);
+
+    while (x != 0){
+        suma += x;
+        printf("Nuevo numero obtenido:%d\n", suma);
+        printf("Ingresa otro numero\n");
+        scanf("%d", &x);
+
+    }
+
+*/
+    int opcion;
+    int a,b,c,d;
+    int i = 1;
+    int valor1, valor2;
+    int menu;
+    do{
+
+        printf("1. suma de calificaciones\n");
+        printf("2. promedio de calificaciones\n");
+        scanf("%d", &menu);
+    }while((menu<=1)&&(menu>=2));
+    {
+
+
+        if(menu=1){
+
+        printf("Ingresar numero de calificaciones\n");
+        scanf("%d", &a);
+
+
+
+        for(i ; i<=a; i++){
+                printf("Ingresar calificacion numero %d\n", i);
+                scanf("%d", &b);
+                b =+valor1;
+
+
+                if((b>100)&&(b<0)){
+                printf("Ingresa calificacion valida\n");
+
+        }
+    }
+        printf("La suma es: %d", valor1);
+    }
+
+
+
+     if(menu=2){
+
+        printf("Ingresar numero de calificaciones\n");
+        scanf("%d", &c);
+
+
+
+        for(i ; i<=c; i++){
+                printf("Ingresar calificacion numero %d\n", i);
+                scanf("%d", &d);
+                d =+valor2;
+
+
+                if((d>100)&&(d<0)){
+                printf("Ingresa calificacion valida\n");
+
+        }
+    }
+        valor2 = valor2/i;
+        printf("La suma es: %d", valor2);
+    }
+
+
+
+    }
+
+    /*
+    do{
+        printf("1. Continuar\n");
+        printf("2. Salir\n");
+        scanf("%d", &opcion);
+    }while (opcion = 2);{
+
+        printf("Ingresar numero de calificaciones\n");
+        scanf("%d", &a);
+
+        }
+
+        for(i ; i<=a; i++){
+                printf("Ingresar calificacion numero %d\n", i);
+                scanf("%d", &b);
+                c =+c
+
+
+                if((b>100)&&(b<0)){
+                printf("Ingresa calificacion valida\n");
+
+        }
+    }
+    int menu;
+        printf("1. suma\n");
+        printf("2. promedio\n");
+        scanf("%d", &menu);
+
+    if(menu=1){
+
+    }
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    return 0;
+}
