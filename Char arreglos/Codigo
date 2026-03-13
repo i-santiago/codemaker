@@ -19,9 +19,11 @@ int main()
             printf("Alumno %d:\n", n);
             fgets(alumno2, sizeof(alumno2), stdin);
             printf("\n", n);
-            lista[n] = alumno2;
+            strcpy(lista[n], alumno2); ;
 
     }
+
+
 printf("Lista\n");
      for(m = 0; m < 5; m++ ){
             //p = lista[m][16];
