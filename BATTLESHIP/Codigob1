@@ -1,95 +1,188 @@
 #include <stdio.h>
 #include <stdlib.h>
+//#include <time.h>
 
-int botes(){
+//LETRERO BATALLA NAVAL
+void let(){
+    printf("  _    _  ___  _         _           _        _\n");
+    printf(" |_/  |_|  |  |_| |  |  |_|   | /|  |_|  | / |_| |\n");
+    printf(" |_/  | |  |  | | |_ |_ | |   |/ |  | |  |/  | | |_\n");
+    printf("\n");
+}
+//Inicializar Matriz
+void matriz0(int filasy, int columnasx, int tab[filasy][columnasx]){
+    int i, j;
+    for (i = 1; i < filasy; i++){
+        for (j = 1; j < columnasx; j++){
+            tab[i][j] = 0;
+        }
+    }
+}
+//Imprimir matriz 0
+void matriz01(int filasy, int columnasx, int tab[filasy][columnasx]){
+    int i, j;
+    for (i = 1; i < filasy; i++){
+        for (j = 1; j < columnasx; j++){
+            tab[i][j] = 0;
+            printf("%d", tab[i][j]);
+        }
+        printf("\n");
+    }
+}
+//Imprimir matriz barco
+void matriz11(int filasy, int columnasx, int tab[filasy][columnasx], int tabreal[filasy][columnasx]){
+    int i, j;
+
+    int w;
+    int C = 5;
+    int b[C];
+    int d[C];
+    for(w = 1; w < 5; w++){
+        printf("Barco %d: Posicion x (1-5): ",w);
+        scanf("%d", &b[w]);
+        printf("\n");
+        printf("Barco %d: Posicion y (1-5): ",w);
+        scanf("%d", &d[w]);
+        printf("\n\n");
+        tabreal[b[w]][d[w]] = 1;
+    }
+
+    system("cls");
+    let();
+    for (i = 1; i < 6; i++){
+        for (j = 1; j < 6; j++){
+            if(tabreal[i][j] == 1){
+                printf("1");
+            }else{
+                printf("0");
+            }
+            //tab[i][j] = 0;
+            //printf("%d", tab[i][j]);
+        }
+        printf("\n");
+    }
+
+
+}
+//Matriz con barco
+void matriz(int filasy, int columnasx, int tab[filasy][columnasx]){
+    int i, j;
+    printf("\n");
+    for (i = 1; i < filasy; i++){
+        for (j = 1; j < columnasx; j++){
+            printf("[%d]", tab[i][j]);
+        }
+        printf("\n");
+    }
+}
+void estadisticas(int barcos, int totbarcos, int turno, int totturnos){
+    printf("\nBARCOS ENCONTRADOS: %d/%d\n", barcos, totbarcos);
+    printf("TURNO: %d/%d\n", turno, totturnos);
+}
+
+void ataque(){
+
+
 
 }
 
 int main()
 {
-    int i, j;
-/*
-    int x = 3, y = 3;
-    int tablero[x][y];
+    let();
+    printf("INSTRUCCIONES:\nEl jugador 1 colocara cuatro barcos de 1x1 dentro de nuestro mapa 5x5\nMientras que el juagdor 2 tratara de hundir los barcos durante 16 turnos\nSi el jugador 2 encuentra todos los barcos gana, sino gana jugador 1\n\n");
+    printf("DISPARO:\nDespues de hacer un ataque aparece el numero 2 significa que fallaste\nsi aparece el numero 3 significa que le diste a un barco.\n\nRECOMENDACION:\nTras haber terminado una partida intercambien roles.\n\n");
 
-    tablero[0][0] = 100;
-    tablero[0][1] = 101;
-    tablero[0][2] = 102;
-    tablero[1][0] = 110;
-    tablero[1][1] = 111;
-    tablero[1][2] = 112;
-    tablero[2][0] = 120;
-    tablero[2][1] = 121;
-    tablero[2][2] = 122;
+    int filasy = 6, columnasx = 6;
+    int tab[filasy][columnasx];
+    int tabreal[filasy][columnasx];
+    int x, y;
+    int C = 5;
+    int b[C];
+    int D = 5;
+    int d[D];
+    int barco=1,fallo=2,impacto=3, barcos=0, totbarcos=4, turnos=0, totturnos = 16;
 
-    printf("El dato 112 esta en [1][2]: %d\n", tablero[1][2]);
-    printf("El dato 121 esta en [2][1]: %d\n", tablero[2][1]);
+    matriz0(filasy, columnasx, tab);
+    //Dato no nesecario
+    //matriz0(filasy, columnasx, tabreal);
+
+    system("pause");
+    system("cls");
+    let();
+    //printf("///BATALLA NAVAL///\n");
+    printf("\n");
+    printf("Coloca las posiciones de tus cuatro barcos barcos jugador 1.\n");
+    matriz01(filasy, columnasx, tab);
+    matriz11(filasy, columnasx, tab, tabreal);
+    printf("\n");
+    printf("Este es el mapa con las posiciones de tus barcos\n\nBUENA SUERTE JUGADOR 1\n\n\n");
 
     /*
-    for(i=0; i<x ; i++){
-        for(j=0; j<y; j++){
-            printf("%d", tablero[y]);
-        }
-        printf("%d", tablero[x]);
-    }
-    printf("Arreglo bidimensional:\n%d", tablero);
-*/
-///////////////////JUEGO////////////////
-    int N,M,x,y,v,w;
-    int j1 [N][M];
-    int j2 [N][M];
-    N = 3;
-    M = 3;
-
-    int bote1 = 777;
-    int bote2[2] = {555,555};
-
-  for(i=0; i<N ; i++){
-        for(j=0; j<M; j++){
-            j1[i][j]=0;
-    //printf("%d", j1[i][j]);
-        }
-        j1[i][j]=0;
-    //printf("%d\n", j1[i][j]);
-    }
-    
-    i=0;
-    j=0;
-    
-for(i=0; i<N ; i++){
-        for(j=0; j<M; j++){
-
-            printf("%d", j1[i][j]);
-        }
-
-        printf("%d\n", j1[i][j]);
-    }
-/*
-
-        printf("\n");
-printf("Pedir los valores de tus barcos:\n");
-printf("Posicion de x del barco 1: \n");
-scanf("%d", &x);
-printf("Posicion de y del barco 1: \n");
-scanf("%d", &y);
-
-
-
-
-
-j1[x][y] = bote1;
-
-for(i=0; i<N ; i++){
-        for(j=0; j<M; j++){
-
-    printf("%d", j1[i][j]);
+    tabreal[3][1]=barco;
+    tabreal[2][4]=barco;
+    tabreal[1][1]=barco;
+    tabreal[0][4]=barco;
+    */
+    system("pause");
+    system("cls");
+    let();
+    printf("Jugador 2 en este mapa debes hundir los barcos enemigos.\nColoca las coordenadas de tus ataques para ganar!\n");
+    matriz(filasy, columnasx, tab);
+    printf("\n");
+    printf("Puedes iniciar con tu ataque-------------------------------->\n\n");
+    do{
+        printf("Que posicion deseas disparar?(1-5)\n");
+        printf("fila y:");
+        scanf("%d", &y);
+        printf("columna x:");
+        scanf("%d", &x);
+        system("cls");
+        if (x<1||x>5||y<1||y>5){
+            let();
+            printf("\n////////Dato invalido, ingresa un numero de (1-5)///////\n\n");
+            matriz(filasy, columnasx, tab);
+            estadisticas(barcos, totbarcos, turnos, totturnos);
+        }else{
+            y;
+            x;
+        if (tab[y][x]==impacto||tab[y][x]==fallo){
+            let();
+            printf("\n///////Ya haz impactado este lugar///////\n\n");
+            //system("cls");
+        }else if (tabreal[y][x]==barco){
+            let();
+            printf("\n///////////IMPACTO!////////\n\n");
+            tab[y][x]=impacto;
+            barcos++;
+            turnos++;
+            //system("cls");
+        }else{
+            let();
+            printf("\n////////////FALLASTE/////////\n\n");
+            tab[y][x]=fallo;
+            turnos++;
+            //system("cls");
         }
 
-    printf("%d\n", j1[i][j]);
+        matriz(filasy, columnasx, tab);
+        estadisticas(barcos, totbarcos, turnos, totturnos);
+        }
+    }while(turnos<totturnos&&barcos<totbarcos);
+
+        printf("\n//////////////FIN DEL JUEGO////////////\n");
+    //printf("tablero reveleado:");
+    //matriz(filasy, columnasx, tabreal);
+   // printf("tu tablero:");
+    //matriz(filasy, columnasx, tab);
+   // estadisticas(barcos, totbarcos, turnos, totturnos);
+
+    if (barcos==totbarcos){
+        printf("\n_______GANADOR________\n");
+
+    }else{
+        printf("\n_______PERDEDOR_______\n");
+
     }
 
-
-
-*/
     return 0;
 }
