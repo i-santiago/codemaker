@@ -1,0 +1,207 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+//letrero
+void letrero(){
+    printf("  _    _  ___  _         _           _        _\n");
+    printf(" |_/  |_|  |  |_| |  |  |_|   |\\ |  |_|  | / |_| |\n");
+    printf(" |_/  | |  |  | | |_ |_ | |   | \\|  | |  |/  | | |_\n");
+    printf("\n");
+}
+
+//convertir matriz a un numero especifico, como para convertirla a 0s
+void convmatriz(int maxjug, int filasy, int columnasx, int tab[maxjug][filasy][columnasx], int jug, int num){
+    int i, j;
+    for (i = 1; i < filasy; i++){
+        for (j = 1; j < columnasx; j++){
+            tab[jug][i][j] = num;
+        }
+    }
+}
+//imprimir matriz
+void printmatriz(int maxjug, int filasy, int columnasx, int tab[maxjug][filasy][columnasx], int jug){
+    int i, j;
+    for (i = 1; i < filasy; i++){
+        for (j = 1; j < columnasx; j++){
+            printf("[%d]", tab[jug][i][j]);
+        }
+        printf("\n");
+    }
+}
+
+//posiciones de barco
+void posbarco(int maxjug, int filasy, int columnasx, int tab[maxjug][filasy][columnasx], int tabreal[maxjug][filasy][columnasx], int jug){
+    int i=filasy-1, j=columnasx-1;
+    int w, bx, dy;
+    for(w = 1; w < 5; w++){
+        printf("Barco %d: Fila y (1-%d): ",w, i);
+        scanf("%d", &dy);
+        printf("\n");
+        printf("Barco %d: Columna x (1-%d): ",w, j);
+        scanf("%d", &bx);
+        printf("\n");
+        if (bx>=1&&bx<=j&&dy>=1&&dy<=i){
+            tabreal[jug][dy][bx] = 1;
+        }else{
+            printf("\nDatos invalidos, reingresa los datos (1-5).\n\n");
+            w--;
+        }
+    }
+
+    system("cls");
+    letrero();
+    printmatriz(maxjug, filasy, columnasx, tabreal, jug);
+}
+//turno y barcos
+void estadisticas(int jug, int barcos[], int totbarcos, int turno, int totturnos){
+    printf("\nBARCOS ENCONTRADOS: %d/%d\n", barcos[jug], totbarcos);
+    printf("TURNO: %d/%d\n", turno, totturnos);
+}
+
+//nombres de jugadores
+void nombresjug(int maxjug, int limchar, char jugadores[maxjug][limchar]){
+    char jugador[20];
+    int i;
+    fflush(stdin);
+    for (i=0; i<maxjug; i++){
+        int I = i+1;
+        printf("Introduce el nombre del jugador %d: ", I);
+        fgets(jugador, sizeof(jugador), stdin);
+        jugador[strcspn(jugador, "\n")] = 0;
+        printf("\n");
+        strcpy(jugadores[i],jugador);
+    }
+    for (i=0; i<maxjug; i++){
+        int I = i+1;
+        printf("Jugador %d: %s\n", I, jugadores[i]);
+    }
+}
+
+int main()
+{
+    int filasy = 6, columnasx = 6; //tamaño de la matriz
+    int maxjug=2, limchar=20; //cantidad de jugadores y limite de caracters para el nombre
+    char listajug[maxjug][limchar];
+    int tab[maxjug][filasy][columnasx];
+    int tabreal[maxjug][filasy][columnasx];
+    int x, y;
+    int i;
+    int barco=1,fallo=2,impacto=3, barcos[2], totbarcos=4, turnos=0, totturnos = 38;
+
+    barcos[0]=0;
+    barcos[1]=0;
+
+    letrero();
+    printf("INSTRUCCIONES:\n2 jugadores colocaran sus barcos en un mapa de 5x5.\nUna vez colocados deberan de intentar encontrar donde coloco sus barcos el otro jugador.\nLa meta es tumbar todos los barcos del otro jugador.\n\n");
+    printf("DISPARO:\nDespues de realizar un disparo, la posicion que atacaste se volvera [2] o [3]\na continuacion esta el significado de los numeros\n\n");
+    printf("-[0]:Agua\n-[1]:Barco (Solo aparece en tu tablero)\n-[2]:Fallo\n-[3]:Impacto\n\n");
+
+//convertir todos los numeros en 0s
+    for (i=0; i<maxjug; i++){
+        convmatriz(maxjug, filasy, columnasx, tab, i, 0);
+        convmatriz(maxjug, filasy, columnasx, tabreal, i, 0);
+    }
+
+    system("pause");
+    system("cls");
+
+//usuarios de jugadores
+    letrero();
+    printf("\n");
+
+    nombresjug(maxjug, limchar, listajug);
+    system("pause");
+
+//posiciones de cada jugador
+    for (i=0; i<maxjug; i++){
+        int I = i+1;
+        system("cls");
+        letrero();
+        printf("Jugador %d: %s\n", I, listajug[i]);
+        printf("Coloca las posiciones de tus cuatro barcos.\n");
+        printmatriz(maxjug, filasy, columnasx, tab, i);
+        posbarco(maxjug, filasy, columnasx, tab, tabreal, i);
+        printf("\n");
+        printf("Este es el mapa con las posiciones de tus barcos %s\n\n", listajug[i]);
+        system("pause");
+    }
+
+    system("cls");
+
+//contador del jugador que tiene turno(empieza siempre desde el primer jugador)
+    int ju=0;
+
+    do{
+        system("cls");
+        letrero();
+
+//solamente para imprimir el num de jugador
+        int JU=ju+1;
+
+//definir el jugador enemigo
+        int ju2;
+        if (ju==0){
+            ju2=1;
+        }else{
+            ju2=0;
+        }
+
+        printf("Jugador %d: %s\n\n", JU, listajug[ju]);
+        estadisticas(ju, barcos, totbarcos, turnos, totturnos);
+        printmatriz(maxjug, filasy, columnasx, tab, ju);
+
+        printf("Que posicion deseas disparar?(1-5)\n");
+        printf("Fila y:");
+        scanf("%d", &y);
+        printf("Columna x:");
+        scanf("%d", &x);
+        system("cls");
+
+        letrero();
+        if (x<1||x>=columnasx||y<1||y>=filasy){
+            printf("\nDato invalido, ingresa un numero de (1-5)\n\n");
+            }else{
+            if (tab[ju][y][x]==impacto||tab[ju][y][x]==fallo){
+                printf("Ya haz impactado este lugar\n\n");
+            }else{
+                if(tabreal[ju2][y][x]==barco){
+                    printf("IMPACTO\n\n");
+                    tab[ju][y][x]=impacto;
+                    barcos[ju]++;
+                    turnos++;
+                    estadisticas(ju, barcos, totbarcos, turnos, totturnos);
+                    printmatriz(maxjug, filasy, columnasx, tab, ju);
+
+                }else{
+                    printf("Fallaste\n\n");
+                    tab[ju][y][x]=fallo;
+                    turnos++;
+                    estadisticas(ju, barcos, totbarcos, turnos, totturnos);
+                    printmatriz(maxjug, filasy, columnasx, tab, ju);
+
+                }//cambiar el jugador en turno
+                if (barcos[ju] == totbarcos){
+                    break;
+                }
+                if (ju==0){
+                    ju=1;
+                }else{
+                    ju=0;
+                }
+            }
+        }
+        system("pause");
+    }while(turnos<totturnos);
+
+    printf("\n\nFIN DEL JUEGO\n\n");
+
+    if (barcos[0]>barcos[1]){
+        printf("\n\nJugador 1 %s ha GANADO\n", listajug[0]);
+    }else if (barcos[1]>barcos[0]){
+        printf("\n\nJugador 2 %s ha GANADO\n", listajug[1]);
+    }else{
+        printf("\n\nEmpate/Ningung jugador gana\n");
+    }
+    return 0;
+}
