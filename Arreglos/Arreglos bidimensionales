@@ -1,0 +1,61 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+
+    char lista[4][20];
+    int i,j;
+   char nombre[4][20];
+   int numeros[5];
+ /*
+//PIDE EL ARREGLO OTORGANDO UN VALOR
+   for(i=0;i<4;i++){
+    strcpy(lista[i],fgets(nombre, sizeof (nombre), stdin));
+
+/ }
+//iMPRIME EL ARREGLO
+    for(i=0;i<4;i++){
+            printf("%s\n",lista[i] );
+   }
+
+//IMPRIME LA DIRECCION DE MEMORIA
+    printf("%d\n", &nombre[0]);
+    printf("%d", nombre);
+      for(i=0;i<4;i++){
+            printf("%d. %d\n",i, &nombre[i]);
+   }
+
+*/
+
+
+
+     for(i=0;i<4;i++){
+            scanf("%d\n", &numeros[i]);
+   }
+
+
+    for(i=0;i<4;i++){
+            printf("%d. %d\n",i, &numeros[i]);
+   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    return 0;
+}
