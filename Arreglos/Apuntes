@@ -1,0 +1,5 @@
+El string es una cadena de caracteres, una cadena es un arreglo. Un arreglo es un conjunto de caracteres del mismo tipo. 
+
+Los char o strings son apuntadores cuando se usa ampersand es la dirigirte a la dirreccion.
+
+El identificador de un arreglo ya sea unidimensional como dimensional es un appuntador porque hace referencia a su direccion de memoria.
