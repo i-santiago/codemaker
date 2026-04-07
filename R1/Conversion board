@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    double step = 0, start = 0, stop = 0;
+
+    do{
+        printf("Ingresa la distancia (m):");
+        scanf("%lf", &start);
+        if(start<0){printf("Ingresa un valor valido!\n"); }
+    }while(start<0);
+
+    do{
+        printf("Ingresa los pasos:");
+        scanf("%lf", &step);
+        if(step<=0){printf("Ingresa un valor valido!\n"); }
+    }while(step<=0);
+
+    do{
+        printf("Ingresa el alto:");
+        scanf("%lf", &stop);
+        if(stop<0){printf("Ingresa un valor valido!\n"); }
+    }while(stop<0);
+
+
+    for(double conv=start; conv <= stop; conv += step ){
+        printf("Meters: %-20lf Feet: %-20lf\n", conv, conv*3.28);
+    }
+
+
+
+
+
+    return 0;
+}
