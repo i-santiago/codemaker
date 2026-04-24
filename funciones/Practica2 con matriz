@@ -55,7 +55,7 @@ int main()
     int m = 0;
     FILE *f;
     f = fopen("tablero.txt","w");
-
+//Si en el fopen reemplazamos el w de write con a, la a escribe en el texto pero sin borrar lo anterior
     capturar(v);
     mostrartd(v);
     diagonal(v, m);
