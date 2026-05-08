@@ -1,0 +1,4 @@
+Tipos de datos: el menor es el char y el mas grande es el double con 64 bits.
+Operadores: Hay aritmeticos, logicos. (ternario)
+Control: if, switch, for, while, do while.
+Arreglos: Es un conjunto de datos del mismo tipo. Hay unidimensionales, y bidimensionales.
