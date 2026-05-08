@@ -1,0 +1,88 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+struct barco{
+    char nombre[20];
+    int peso;
+    int tripulacion;
+    int tamano;
+};
+
+int f_baja(struct barco *p){
+
+    printf("%d\n", p->tripulacion);
+
+    p->tripulacion = p->tripulacion - 2;
+    if(p->tripulacion == 0){
+        return 0;
+    }
+        else{
+            f_baja(p);
+    }
+
+}
+
+int main()
+{
+    int aguacate;
+    struct barco totopo;
+    int *p;
+    //totopo es una direccion de memoria del inicio del arreglo
+    //printf("%d", totopo);
+    //aguacate = totopo.tripulacion;
+    totopo.peso = 1000;
+    totopo.tripulacion = 10;
+
+    f_baja(&totopo);
+    return 0;
+}
+INTENTO 2 CON MISMO RESULTADO--------------------------------------------------------------------->
+
+#include <stdio.h>
+#include <stdlib.h>
+
+
+struct barco{
+    char nombre[20];
+    int peso;
+    int tripulacion;
+    int tamano;
+};
+
+int f_baja(struct barco *p){
+
+    printf("%d\n", p->tripulacion);
+
+    p->tripulacion = p->tripulacion - 2;
+    if(p->tripulacion == 0){
+        return 0;
+    }
+        else{
+            f_baja(p);
+    }
+
+}
+
+int main()
+{
+    /*
+    int aguacate;
+    struct barco totopo;
+    int *p;
+    //totopo es una direccion de memoria del inicio del arreglo
+    //printf("%d", totopo);
+    //aguacate = totopo.tripulacion;
+    totopo.peso = 1000;
+    totopo.tripulacion = 10;
+
+    f_baja(&totopo);
+    */
+
+    struct barco toto;
+    struct barco *p;
+    toto.tripulacion = 10;
+    p = &toto;
+    f_baja(p);
+    return 0;
+}
